@@ -1,4 +1,4 @@
-# java-immersion-alura Project
+# Alura Stickers
 
 Project made as an exercise inspired by the [Imersão Java from Alura](https://www.alura.com.br/imersao-java/aulas/aula01-consumindo-api-com-java).
 
