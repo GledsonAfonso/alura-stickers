@@ -26,4 +26,22 @@ public class ImdbResourceTest {
         .statusCode(200)
         .body("$.size()", greaterThan(0));
   }
+
+  @Test
+  public void testGetTop250TvsEndpoint() {
+    given()
+        .when().get("/imdb/top-250-tvs")
+        .then()
+        .statusCode(200)
+        .body("$.size()", greaterThan(0));
+  }
+
+  @Test
+  public void testGetMostPopularTvsEndpoint() {
+    given()
+        .when().get("/imdb/most-popular-tvs")
+        .then()
+        .statusCode(200)
+        .body("$.size()", greaterThan(0));
+  }
 }

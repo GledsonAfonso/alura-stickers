@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ImdbTop250MoviesResponse {
+public class ImdbTopItemsResponse {
   @JsonProperty("items") public List<ImdbMovie> items;
   @JsonProperty("errorMessage") public String errorMessage;
 }
