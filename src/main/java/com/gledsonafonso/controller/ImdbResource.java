@@ -20,4 +20,10 @@ public class ImdbResource {
     public List<ImdbMovie> getTop250Movies() {
         return service.getTop250Movies().items;
     }
+
+    @GET
+    @Path("/most-popular-movies")
+    public List<ImdbMovie> getMostPopularMovies() {
+        return service.getMostPopularMovies().items;
+    }
 }

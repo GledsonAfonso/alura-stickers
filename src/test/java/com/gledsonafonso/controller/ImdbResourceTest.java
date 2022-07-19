@@ -10,11 +10,20 @@ import static org.hamcrest.Matchers.greaterThan;
 @QuarkusTest
 public class ImdbResourceTest {
   @Test
-    public void testGetTop250MoviewEndpoint() {
-        given()
-            .when().get("/imdb/top-250-movies")
-            .then()
-            .statusCode(200)
-            .body("$.size()", greaterThan(0));
-    }
+  public void testGetTop250MoviesEndpoint() {
+    given()
+        .when().get("/imdb/top-250-movies")
+        .then()
+        .statusCode(200)
+        .body("$.size()", greaterThan(0));
+  }
+
+  @Test
+  public void testGetMostPopularMoviesEndpoint() {
+    given()
+        .when().get("/imdb/most-popular-movies")
+        .then()
+        .statusCode(200)
+        .body("$.size()", greaterThan(0));
+  }
 }
