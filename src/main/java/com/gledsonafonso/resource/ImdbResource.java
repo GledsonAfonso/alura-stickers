@@ -1,4 +1,4 @@
-package com.gledsonafonso.controller;
+package com.gledsonafonso.resource;
 
 import java.util.List;
 
