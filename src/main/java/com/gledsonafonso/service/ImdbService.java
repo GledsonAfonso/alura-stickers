@@ -46,7 +46,7 @@ public class ImdbService {
         .get().items;
   }
 
-  public byte[] getImageWithPhrase(ImdbGetMovieImageRequest request) {
+  public byte[] getImageWithSubtitle(ImdbGetMovieImageRequest request) {
     var filteredMovies = this.getTop250Movies()
         .stream()
         .filter(it -> it.title.toLowerCase().contains(request.movieName.toLowerCase()))

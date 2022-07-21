@@ -50,7 +50,7 @@ public class ImdbResourceTest {
   }
 
   @Test
-  public void testGetImageWithPhraseEndpoint() {
+  public void testGetImageWithSubtitleEndpoint() {
     var requestBody = new ImdbGetMovieImageRequest();
     requestBody.movieName = "The Shawshank Redemption";
     requestBody.imageSubtitle = "some smart comment here";
@@ -60,7 +60,7 @@ public class ImdbResourceTest {
         .and()
         .body(requestBody)
         .when()
-        .post("/imdb/image-with-phrase")
+        .post("/imdb/image-with-subtitle")
         .then()
         .statusCode(200)
         .extract().response();
@@ -69,7 +69,7 @@ public class ImdbResourceTest {
   }
 
   @Test
-  public void testGetImageWithPhraseEndpointWithUnknowTitle() {
+  public void testGetImageWithSubtitleEndpointWithUnknowTitle() {
     var requestBody = new ImdbGetMovieImageRequest();
     requestBody.movieName = "asdfasdf";
     requestBody.imageSubtitle = "some smart comment here";
@@ -79,7 +79,7 @@ public class ImdbResourceTest {
         .and()
         .body(requestBody)
         .when()
-        .post("/imdb/image-with-phrase")
+        .post("/imdb/image-with-subtitle")
         .then()
         .statusCode(204);
   }

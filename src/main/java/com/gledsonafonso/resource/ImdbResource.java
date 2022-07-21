@@ -42,9 +42,9 @@ public class ImdbResource {
   }
 
   @POST
-  @Path("/image-with-phrase")
+  @Path("/image-with-subtitle")
   @Produces("image/jpeg")
-  public byte[] getImageWithPhrase(ImdbGetMovieImageRequest request) {
-    return imdbService.getImageWithPhrase(request);
+  public byte[] getImageWithSubtitle(ImdbGetMovieImageRequest request) {
+    return imdbService.getImageWithSubtitle(request);
   }
 }
