@@ -1,4 +1,4 @@
-package com.gledsonafonso.service;
+package com.gledsonafonso.service.restclient;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -8,7 +8,7 @@ import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 import com.gledsonafonso.model.ImdbTopItemsResponse;
 
 @RegisterRestClient(configKey = "imdb-service-extensions-api")
-public interface ImdbService {
+public interface ImdbRestClientService {
   String apiKey = "k_fy5353d7";
 
   @GET
