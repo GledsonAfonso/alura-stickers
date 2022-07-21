@@ -3,9 +3,9 @@ package com.gledsonafonso.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ImdbGetMovieImageRequest {
-  @JsonProperty("title")
-  public String title;
+  @JsonProperty("movie_name")
+  public String movieName;
 
-  @JsonProperty("phrase")
-  public String phrase;
+  @JsonProperty("image_subtitle")
+  public String imageSubtitle;
 }

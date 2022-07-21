@@ -52,7 +52,8 @@ public class ImdbResourceTest {
   @Test
   public void testGetImageWithPhraseEndpoint() {
     var requestBody = new ImdbGetMovieImageRequest();
-    requestBody.title = "The Shawshank Redemption";
+    requestBody.movieName = "The Shawshank Redemption";
+    requestBody.imageSubtitle = "some smart comment here";
 
     var response = given()
         .header("Content-type", "application/json")
@@ -70,7 +71,8 @@ public class ImdbResourceTest {
   @Test
   public void testGetImageWithPhraseEndpointWithUnknowTitle() {
     var requestBody = new ImdbGetMovieImageRequest();
-    requestBody.title = "asdfasdf";
+    requestBody.movieName = "asdfasdf";
+    requestBody.imageSubtitle = "some smart comment here";
 
     given()
         .header("Content-type", "application/json")

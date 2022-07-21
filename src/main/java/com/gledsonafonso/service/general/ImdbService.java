@@ -3,52 +3,59 @@ package com.gledsonafonso.service.general;
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.ws.rs.GET;
 
-import org.eclipse.microprofile.rest.client.inject.RestClient;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import com.gledsonafonso.model.ImdbGetMovieImageRequest;
 import com.gledsonafonso.model.ImdbMovie;
-import com.gledsonafonso.service.restclient.CustomImdbRestClientService;
-import com.gledsonafonso.service.restclient.ImdbRestClientService;
+import com.gledsonafonso.model.ImdbTopItemsResponse;
+import com.gledsonafonso.util.ImageUtils;
 import com.gledsonafonso.util.RestClientUtils;
 
 @ApplicationScoped
 public class ImdbService {
-  @RestClient
-  private ImdbRestClientService restClientService;
+  @ConfigProperty(name = "imdb.url")
+  String url;
+
+  @ConfigProperty(name = "imdb.apiKey")
+  String apiKey;
+
+  public interface CustomHttpRestClient {
+    @GET
+    public ImdbTopItemsResponse get();
+  }
 
   public List<ImdbMovie> getTop250Movies() {
-    return restClientService.getTop250Movies().items;
+    return RestClientUtils.getNewClientBuilder(url + "/Top250Movies/" + apiKey, CustomHttpRestClient.class)
+        .get().items;
   }
 
   public List<ImdbMovie> getMostPopularMovies() {
-    return restClientService.getMostPopularMovies().items;
+    return RestClientUtils.getNewClientBuilder(url + "/MostPopularMovies/" + apiKey, CustomHttpRestClient.class)
+        .get().items;
   }
 
   public List<ImdbMovie> getTop250TVs() {
-    return restClientService.getTop250TVs().items;
+    return RestClientUtils.getNewClientBuilder(url + "/Top250TVs/" + apiKey, CustomHttpRestClient.class)
+        .get().items;
   }
 
   public List<ImdbMovie> getMostPopularTVs() {
-    return restClientService.getMostPopularTVs().items;
+    return RestClientUtils.getNewClientBuilder(url + "/MostPopularTVs/" + apiKey, CustomHttpRestClient.class)
+        .get().items;
   }
 
   public byte[] getImageWithPhrase(ImdbGetMovieImageRequest request) {
-    var filteredMovies = restClientService.getTop250Movies().items
+    var filteredMovies = this.getTop250Movies()
         .stream()
-        .filter(it -> it.title.toLowerCase().contains(request.title.toLowerCase()))
+        .filter(it -> it.title.toLowerCase().contains(request.movieName.toLowerCase()))
         .toList();
 
-    return this.getImage(filteredMovies);
-  }
-
-  private byte[] getImage(List<ImdbMovie> filteredMovies) {
-    try {
-      var imdbMovie = filteredMovies.get(0);
-      var customImdbRestClientService = RestClientUtils.getNewClientBuilder(imdbMovie.image, CustomImdbRestClientService.class);
-      return customImdbRestClientService.getMovieImage();
-    } catch (Exception exception) {
-      exception.printStackTrace();
+    if (!filteredMovies.isEmpty()) {
+      var movie = filteredMovies.get(0);
+      return ImageUtils.getImageAsByteArray(movie.image, request.imageSubtitle);
+    } else {
       return null;
     }
   }
