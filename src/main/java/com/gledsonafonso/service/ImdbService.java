@@ -1,4 +1,4 @@
-package com.gledsonafonso.service.general;
+package com.gledsonafonso.service;
 
 import java.util.List;
 

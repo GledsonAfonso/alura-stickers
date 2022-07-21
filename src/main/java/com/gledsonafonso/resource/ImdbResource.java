@@ -10,7 +10,7 @@ import javax.ws.rs.Produces;
 
 import com.gledsonafonso.model.ImdbGetMovieImageRequest;
 import com.gledsonafonso.model.ImdbMovie;
-import com.gledsonafonso.service.general.ImdbService;
+import com.gledsonafonso.service.ImdbService;
 
 @Path("/imdb")
 public class ImdbResource {
