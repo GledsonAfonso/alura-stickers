@@ -7,7 +7,7 @@ import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 import com.gledsonafonso.model.ImdbTopItemsResponse;
 
-@RegisterRestClient(configKey="imdb-service-extensions-api")
+@RegisterRestClient(configKey = "imdb-service-extensions-api")
 public interface ImdbService {
   String apiKey = "k_fy5353d7";
 
